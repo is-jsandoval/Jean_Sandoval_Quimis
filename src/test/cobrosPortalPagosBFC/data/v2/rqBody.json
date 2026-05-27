@@ -1,0 +1,18 @@
+{
+    "/afiliacion/v2/link-pago": {
+        "POST": {
+            "codigoComercioExistente": 0,
+            "ruc": "string",
+            "email": "automation@bancoguayaquil.com",
+            "numeroCuenta": "string",
+            "tipoCuenta": "string",
+            "titularCuenta": "AutomationTitula",
+            "identificacionTitularCuenta": "stringstri",
+            "tipoIdentificacionTitularCuenta": "string",
+            "usuarioModificacion": "automation",
+            "estacionModificacion": "automation",
+            "canal": "AUTO",
+            "ip": "172.172.172.172"
+        }
+    }
+}

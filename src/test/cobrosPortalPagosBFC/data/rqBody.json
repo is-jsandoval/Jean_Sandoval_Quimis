@@ -1,0 +1,30 @@
+{
+    "/afiliacion/v1/afiliar-preaprobado": {
+        "codigoComercioExistente": 0,
+        "ruc": "string",
+        "email": "user@example.com",
+        "numeroCuenta": "string",
+        "tipoCuenta": "string",
+        "titularCuenta": "string",
+        "identificacionTitularCuenta": "stringstri",
+        "tipoIdentificacionTitularCuenta": "string",
+        "usuarioModificacion": "string",
+        "estacionModificacion": "string",
+        "canal": "strin",
+        "ip": "string"
+    },
+    "/afiliacion/v2/link-pago": {
+        "codigoComercioExistente": 0,
+        "ruc": "string",
+        "email": "automation@bancoguayaquil.com",
+        "numeroCuenta": "string",
+        "tipoCuenta": "string",
+        "titularCuenta": "AutomationTitula",
+        "identificacionTitularCuenta": "stringstri",
+        "tipoIdentificacionTitularCuenta": "string",
+        "usuarioModificacion": "automation",
+        "estacionModificacion": "automation",
+        "canal": "AUTO",
+        "ip": "172.172.172.172"
+    }
+}

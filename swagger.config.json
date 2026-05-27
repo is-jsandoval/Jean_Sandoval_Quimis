@@ -1,0 +1,36 @@
+{
+  "cobrosBFP": {
+    "url": "http://cobroscross-bfp.apps.test.ocp.bancoguayaquil.com/swagger/v2/swagger.json",
+    "outputFolder": "cobrosBFP"
+  },
+  "portalComerciosBFC": {
+    "url": "http://portalcomerciosbfc.apps.test.ocp.bancoguayaquil.com/swagger/v1/swagger.json?urls.primaryName=v2",
+    "outputFolder": "portalComerciosBFC"
+  },
+  "autorizadorBFC": {
+    "url": "http://afiliacioncomerciosbe.apps.test.ocp.bancoguayaquil.com/swagger/v2/swagger.json?urls.primaryName=v2",
+    "outputFolder": "afiliacionBE"
+  },
+  "comerciosBE": {
+    "url": "http://comercios-be.apps.test.ocp.bancoguayaquil.com/swagger/v2/swagger.json?urls.primaryName=v2",
+    "outputFolder": "afiliacionBE"
+  },
+  "creditoComercioBFC": {
+    "url": "http://creditofacturacionbfc.apps.test.ocp.bancoguayaquil.com/swagger/v2/swagger.json?urls.primaryName=v2",
+    "outputFolder": "afiliacionBE"
+  },
+  "pagosBE": {
+    "url": "http://pagosbe.apps.test.ocp.bancoguayaquil.com/swagger/v2/swagger.json?urls.primaryName=v2",
+    "outputFolder": "afiliacionBE"
+  },
+  "afiliacionBE": {
+    "url": "http://afiliacioncomerciosbe.apps.test.ocp.bancoguayaquil.com/swagger/v1/swagger.json?urls.primaryName=v2",
+    "outputFolder": "afiliacionBE"
+  },
+  "cobrosPortalPagosBFC": {
+    "url": "http://portalpagosbfc.apps.test.ocp.bancoguayaquil.com/swagger/v1/swagger.json",
+    "outputFolder": "cobrosPortalPagosBFC"
+  }
+
+  
+}

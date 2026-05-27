@@ -1,0 +1,110 @@
+trigger:
+- main
+ 
+parameters:
+- name: suite
+  displayName: Flujo de ejecución
+  type: string
+  default: TODOS
+  values:
+    - portalComerciosBFC 
+    - pagosBE 
+    - creditoComercioBFC
+    - cobrosPortalPagosBFC
+    - autorizadorBFC 
+    - afiliacionBE
+    - cobrosBFP
+    - TODOS
+ 
+pool:
+  name: AgentQADev
+  
+variables:
+  TEST_RESULTS_FOLDER: "test-results"
+  suite: ${{ parameters.suite }}
+  
+stages:
+- stage: ComerciosAPI
+  displayName: "Comercios API"
+  jobs:
+    - job: RunTests
+      steps:
+ 
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '20.x'
+        displayName: 'Install Node.js'
+ 
+      - task: PowerShell@2
+        displayName: 'Instalar y ejecutar pruebas'
+        continueOnError: true
+        inputs:
+          targetType: 'inline'
+          workingDirectory: '$(Build.SourcesDirectory)/src'
+          script: |
+            Write-Host "Cleaning workspace..."
+
+            if (Test-Path "$(Build.SourcesDirectory)\node_modules") {
+              Remove-Item -Recurse -Force "$(Build.SourcesDirectory)\node_modules"
+            }
+
+            if (Test-Path "$(Build.SourcesDirectory)\package-lock.json") {
+              Remove-Item -Force "$(Build.SourcesDirectory)\package-lock.json"
+            }
+
+            npm cache clean --force
+            npm config set registry https://registry.npmjs.org/
+            npm install
+            npx playwright install --with-deps
+
+            Write-Host "Ejecutando suite: ${{ parameters.suite }}"
+
+            $tag = "${{ parameters.suite }}".Split('-')[0].Trim()
+
+            if ($tag -eq "TODOS") {
+              npm run rtest
+            } else {
+              npm run rtest:$tag
+            }
+
+      - task: PublishTestResults@2
+        displayName: "Publish Test Results (JUnit)"
+        condition: succeededOrFailed()
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: '*.xml'
+          searchFolder: "$(System.DefaultWorkingDirectory)\\$(TEST_RESULTS_FOLDER)\\xml"
+
+      - task: MaciejMaciejewski.azure-pipelines-cucumber.PublishCucumberReport.PublishCucumberReport@1
+        displayName: 'Publish Cucumber Report'
+        condition: succeededOrFailed()
+        inputs:
+          jsonDir: "$(Build.SourcesDirectory)\\$(TEST_RESULTS_FOLDER)\\json"
+          outputPath: "$(Build.SourcesDirectory)\\$(TEST_RESULTS_FOLDER)"
+          name: 'Comercios API'
+          title: 'Informe de pruebas Automatizadas'
+
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish HTML Reports"
+        condition: succeededOrFailed()
+        inputs:
+          PathtoPublish: "$(Build.SourcesDirectory)\\$(TEST_RESULTS_FOLDER)\\html"
+          ArtifactName: "html"
+          publishLocation: "Container"
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish JSON Reports"
+        condition: succeededOrFailed()
+        inputs:
+          PathtoPublish: "$(Build.SourcesDirectory)\\$(TEST_RESULTS_FOLDER)\\json"
+          ArtifactName: "json"
+          publishLocation: "Container"
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish PDF Reports"
+        condition: succeededOrFailed()
+        inputs:
+          PathtoPublish: "$(Build.SourcesDirectory)\\$(TEST_RESULTS_FOLDER)\\pdf"
+          ArtifactName: "pdf"
+          publishLocation: "Container"

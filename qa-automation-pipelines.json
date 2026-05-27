@@ -1,0 +1,11 @@
+{
+    "tco-automatizacion-api-tst": {
+        "afiliacionBE": "afi-comercios-be",
+        "cobrosPersonas": "tco-comercio-entidad-mcs",
+        "creditoComercioBFC": "cred-comecios-bfp",
+        "pagosBE": "cobros-link-mantenimiento-mcs",
+        "autorizadorBFC": "cobros-autorizacion-bfc",
+        "portalComerciosBFC": "portal-comercio-service-bfc",
+        "cobrosPortalPagosBFC": "cobros-portal-pagos-bfc"
+    }
+}
