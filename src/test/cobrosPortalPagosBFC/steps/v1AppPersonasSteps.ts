@@ -1,51 +1,39 @@
 ﻿import { Given, When } from "@cucumber/cucumber";
 import { RequestHelper } from "../../../helper/wrapper/RequestHelper";
 
-import * as rqbody from "../data/rqBody.json";
-import * as hdrs from "../data/hdrs.json";
 
-const requestHandler = new RequestHelper();
 
 Given(
-  "Cliente tiene sus datos para el endpoint {string}",
-  async function (endpoint) {
+  "Existe un link de pago con estado {string}",
+  async function (estadoLink: string) {
 
-    this.endpoint = endpoint;
+    switch (estadoLink) {
 
-    this.ruc = "0930482104001";
-
-    this.hdrs = {
-      ...hdrs,
-      ruc: this.ruc
-    };
-
-    this.body = rqbody[endpoint] || null;
-    this.body.codigoComercioExistente = 0;
-
+      case "activo":
+        this.rqBody = {
+          "token": tkn,
+          "remoteIp": "https://172.26.60.45/credito-comercio/login"
+        };
+        break;
+      default:
+        throw new Error(`Estado de link no soportado: ${estadoLink}`);
+    }
   }
 );
 
 When(
-  "Envío una solicitud {string} al endpoint configurado",
-  async function (metodo) {
+  "Envío una solicitud {string} a {string} {string} para la validacion de recaptcha",
+  async function (metodo, endpoint, estado) {
 
     this.rp = await requestHandler.getResponseBody(
-      this.body,
-      this.endpoint,
+      null,
+      endpoint,
       metodo,
-      {},
-      this.hdrs
+      this.rqBody
     );
 
-    console.info(
-      "Respuesta:",
-      JSON.stringify(this.rp, null, 2)
-    );
-
-    this.attach(
-      JSON.stringify(this.rp, null, 2),
-      "application/json"
-    );
+    console.info("asdf: ", this.rp.responseBody)
+    this.attach(JSON.stringify(this.rp, null, 2), "application/json");
 
   }
 );
