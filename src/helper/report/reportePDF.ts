@@ -38,7 +38,7 @@ const options = {
     "Ambiente": process.env.ENV || "Desarrollo",
     "Squad": squadName,
     "Capa": process.env.PROFILE || squad,
-    "Ejecutado por": process.env.USER || "Local",
+    "Ejecutado por": process.env.USER || "Jean Sandoval",
     "Fecha ejecución": new Date().toLocaleString("es-EC"),
     "Node": process.version,
   },

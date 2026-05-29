@@ -1,0 +1,11 @@
+{
+  "/link-pago/v1/qr/registrar-consumo": {
+    "POST": {
+      "codigoLinkEstatico": "string",
+      "cliente": "string",
+      "motivo": "string",
+      "monto": "string",
+      "auditNumber": "string"
+    }
+  }
+}

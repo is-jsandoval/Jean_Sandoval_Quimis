@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { request } from "@playwright/test";
+import { request } from "playwright/test";
 
 // =====================================
 // CONFIG

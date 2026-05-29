@@ -1,0 +1,19 @@
+{
+  "/link-pago/v1/link/consultar": {
+    "GET": {
+      "codigoAuditoria": "string"
+    }
+  },
+  "/link-pago/v1/link/marcar": {
+    "PUT": {
+      "codigoAuditoria": "string",
+      "estado": "string",
+      "codigoError": "string"
+    }
+  },
+  "/link-pago/v1/qr/consultar": {
+    "GET": {
+      "codigoAuditoria": "string"
+    }
+  }
+}

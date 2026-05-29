@@ -45,9 +45,9 @@ Before(async function ({ pickle }) {
   if (process.env.PROFILE !== 'afiliacionBE') {
     await connection.consultaUsuario(tablaUsuarios);
 
-    console.info(
-      `\nUSUARIO: ${process.env.USER} \nCEDULA: ${process.env.CEDULA} \nCONTEXTO: ${process.env.CONTEXTO}`
-    );
+    // console.info(
+    //   `\nUSUARIO: ${process.env.USER} \nCEDULA: ${process.env.CEDULA} \nCONTEXTO: ${process.env.CONTEXTO}`
+    // );
 
   } else {
     console.info('Sin usuario elegido.');
